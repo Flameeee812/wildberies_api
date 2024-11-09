@@ -32,7 +32,7 @@ class Products:
         filtered_data = self.new_index_data.loc[products]
         return filtered_data[filtered_data["reviewerName"] == reviewer_name]["text"]
 
-    def search_by_color(self, color):
+    def search_by_col(self, color):
         return self.new_index_data["color"][self.new_index_data["color"] == color]
 
     def match_size(self):
@@ -209,7 +209,7 @@ def search_by_color_q() -> object:
     data = Products("name")
     try:
         return fl.jsonify({
-            "right_color": data.search_by_color(fl.request.args.get("color")).to_dict()
+            "right_color": data.search_by_col(fl.request.args.get("color")).to_dict()
         })
     except KeyError:
         return data.error
