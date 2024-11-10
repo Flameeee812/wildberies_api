@@ -41,7 +41,7 @@ class Products:
         ]
 
     @staticmethod
-    def get_product(word):
+    def get_mean_mark(word):
         return round(api_db.groupby(
             api_db[api_db["name"].str.contains(word, na=False)]["name"]
         )["mark"].mean(), 1)
@@ -183,7 +183,7 @@ def get_mean_product_mark_q():
     of a product by name for "/product" route """
 
     return fl.jsonify({
-        "means": [Products.get_product(fl.request.args.get("name")).to_dict()]
+        "means": [Products.get_mean_mark(fl.request.args.get("name")).to_dict()]
         })
 
 
