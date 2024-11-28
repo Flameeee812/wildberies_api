@@ -41,7 +41,7 @@ class Products:
         ]
 
     @staticmethod
-    def get_mean_mark(word):
+    def get_product(word):
         return round(api_db.groupby(
             api_db[api_db["name"].str.contains(word, na=False)]["name"]
         )["mark"].mean(), 1)
@@ -78,8 +78,8 @@ def home_page() -> object:
 
 
 @cache.cached(timeout=60)
-@api.route("/positive")
-def get_all_positive_review() -> object:
+@api.route("/positive", methods=["GET"])
+def get_all_positive_review():
     """Function that displays all positive
     reviews for the "/positive route" """
 
@@ -93,7 +93,7 @@ def get_all_positive_review() -> object:
 
 
 @api.route("/positive/<int:page>")
-def get_positive_review(page) -> object:
+def get_positive_review(page):
     """Function that displays positive
     reviews for the "/positive/page" route
 
@@ -110,8 +110,8 @@ def get_positive_review(page) -> object:
 
 
 @cache.cached(timeout=60)
-@api.route("/negative")
-def get_all_negative_review() -> object:
+@api.route("/negative", methods=["GET"])
+def get_all_negative_review():
     """Function that displays all positive
      reviews for the "/negative" route"""
 
@@ -125,7 +125,7 @@ def get_all_negative_review() -> object:
 
 
 @api.route("/negative/<int:page>")
-def get_negative_review(page) -> object:
+def get_negative_review(page):
     """Function that displays negative reviews for the "/positive/page" route
 
     Parameters:
@@ -141,7 +141,7 @@ def get_negative_review(page) -> object:
 
 
 @api.route('/search')
-def search_by_keyword_q() -> object:
+def search_by_keyword_q():
     """Function that search all products
     by word for the "/search?q=" route"""
 
@@ -177,18 +177,18 @@ def get():
 
 
 @cache.cached(timeout=60)
-@api.route('/product')
+@api.route('/product', methods=["GET"])
 def get_mean_product_mark_q():
     """Function that displays the average rating
     of a product by name for "/product" route """
 
     return fl.jsonify({
-        "means": [Products.get_mean_mark(fl.request.args.get("name")).to_dict()]
+        "means": [Products.get_product(fl.request.args.get("name")).to_dict()]
         })
 
 
 @api.route('/matchSize')
-def match_size() -> object:
+def match_size():
     """Function that displays products that are in stock
     and fit the size for "/matchSize" route"""
 
@@ -202,7 +202,7 @@ def match_size() -> object:
 
 
 @api.route('/color')
-def search_by_color_q() -> object:
+def search_by_color_q():
     """Function that search all products
     by color for the "/search?color=" route"""
 
@@ -216,7 +216,7 @@ def search_by_color_q() -> object:
 
 
 @api.route("/count")
-def count_reviews() -> object:
+def count_reviews():
     """Function that count all reviews
     for a product for the "/search?q=" route"""
 
@@ -230,4 +230,4 @@ def count_reviews() -> object:
 
 
 if __name__ == "__main__":
-    api.run()
+    api.run(debug=True, port=5001)
