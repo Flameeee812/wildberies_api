@@ -51,7 +51,7 @@ class Products:
 
 
 @api.route("/", methods=["GET", "POST"])
-def home_page() -> object:
+def home_page():
     """Function that displays the home page"""
 
     if fl.request.method == "POST":
