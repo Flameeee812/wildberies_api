@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to My API Project</h1>
+    <h3>Available Endpoints:</h3>
+
+    <form action="/wb_api/" method="post">
+        <label for="pos_page">1. Positive Reviews</label>
+        <input type="text" id="pos_page" placeholder="page" name="pos_page">
+        <input type="submit" value="sumbit">
+    </form>
+    <a href="http://127.0.0.1:5001/wb_api/positive"><em>(View All Positive Reviews)</em></a>
+
+    <form action="/wb_api/" method="post"><br>
+        <label for="neg_page">2. Negative Reviews</label>
+        <input type="text" id="neg_page" placeholder="page" name="neg_page">
+        <input type="submit" value="sumbit">
+    </form>
+    <a href="http://127.0.0.1:5001/wb_api/negative"><em>(View All Negative Reviews)</em></a><br>
+
+    <form action="/wb_api/" method="post"><br>
+        <label for="search_by_word">3. Insert keyword for get required product</label>
+        <input type="text" id="search_by_word" placeholder="word" name="search_by_word">
+        <input type="submit" value="sumbit">
+    </form>
+
+    <p><a href="http://127.0.0.1:5001/wb_api/get"><em>4. Insert JSON for get buyer reviews</em></a></p>
+
+    <form action="/wb_api/" method="post">
+        <label for="average_rating">5. Insert product name for get average rating</label>
+        <input type="text" id="average_rating" placeholder="word" name="average_rating">
+        <input type="submit" value="sumbit">
+    </form>
+
+    <form action="/wb_api/" method="post"><br>
+        <label for="color">6. Insert required color for get average rating</label>
+        <input type="text" id="color" placeholder="color" name="color">
+        <input type="submit" value="sumbit">
+    </form>
+
+    <p><a href="http://127.0.0.1:5001/wb_api/matchSize"><em>7. Products in stock matching size</em></a></p>
+    <p><a href="http://127.0.0.1:5001/wb_api/count"><em>8. Count reviews by product</em></a></p>
+</body>
+</html>
