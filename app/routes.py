@@ -21,7 +21,7 @@ def get_positive_review_route(page):
 
 @wb_api.route("/negative", methods=["GET"])
 def get_all_negative_review_route():
-    return get_negative_review()
+    return get_all_negative_review()
 
 
 @wb_api.route("/negative/<int:page>", methods=["GET"])
