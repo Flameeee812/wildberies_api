@@ -1,0 +1,16 @@
+#.gitignore
+
+
+#data
+prepared_data.csv
+tests
+
+#python
+ #.DS_Store
+ #.idea/
+ #.venv/
+ #__pycache__/
+
+ #log
+ app.log
+ app/handlers.log
