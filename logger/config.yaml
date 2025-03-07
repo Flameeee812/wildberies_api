@@ -1,0 +1,56 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  default:
+    format: '#%(levelname)-8s %(name)s:%(funcName)s - %(message)s'
+
+  debug_formatter:
+    format: '#%(levelname)-8s - %(filename)s:%(lineno)d - %(name)s:%(funcName)s - %(message)s'
+
+  app_handlers_formatter:
+    format: '#%(levelname)-8s [%(asctime)s] - %(filename)s - %(name)s:%(funcName)s - %(message)s'
+
+handlers:
+  default:
+    class: logging.StreamHandler
+    formatter: default
+
+  app_file:
+    class: logging.FileHandler
+    filename: app.log
+    mode: a
+    formatter: default
+
+  test_file:
+    class: logging.FileHandler
+    filename: tests/tests.log
+    mode: w
+    formatter: debug_formatter
+
+  app_handler_file:
+    class: logging.FileHandler
+    filename: app/handlers.log
+    mode: a
+    formatter: app_handlers_formatter
+
+loggers:
+  run_app:
+    level: INFO
+    handlers: [app_file]
+    propagate: False
+
+  tests:
+    level: DEBUG
+    handlers: [test_file]
+    propagate: False
+
+  handlers:
+    level: ERROR
+    handlers: [app_handler_file]
+    propagate: False
+
+root:
+  level: WARNING
+  formatter: default
+  handlers: [default]
